@@ -32,6 +32,7 @@ class NaiveBayesClassifier(object):
         
         p = 1
         for feature in features:
+            print "%s - %s - %s" % (feature, category, self.weighted_prob(feature, category))
             p *= self.weighted_prob(feature, category)
             
         return p
@@ -44,23 +45,23 @@ class NaiveBayesClassifier(object):
         # print self.feature_count
         
         
-    def get_features(self, document):
-        all_words = word_tokenize(document)
-        all_words_freq = FreqDist(all_words)
-        
-        # print sorted(all_words_freq.items(), key=lambda(w,c):(-c, w))
-        return all_words_freq
-        
     # def get_features(self, document):
-    #     document = re.sub('[%s]' % re.escape(string.punctuation), '', document)
-    #     document = document.lower()
-    #     all_words = [w for w in word_tokenize(document) if len(w) > 3 and len(w) < 16]
-    #     # p = PorterStemmer()
-    #     # all_words = [p.stem(w) for w in all_words]
+    #     all_words = word_tokenize(document)
     #     all_words_freq = FreqDist(all_words)
     #     
     #     # print sorted(all_words_freq.items(), key=lambda(w,c):(-c, w))
     #     return all_words_freq
+        
+    def get_features(self, document):
+        document = re.sub('[%s]' % re.escape(string.punctuation), '', document) # removes punctuation
+        document = document.lower() # make everything lowercase
+        all_words = [w for w in word_tokenize(document) if len(w) > 3 and len(w) < 16]
+        p = PorterStemmer()
+        all_words = [p.stem(w) for w in all_words]
+        all_words_freq = FreqDist(all_words)
+        
+        # print sorted(all_words_freq.items(), key=lambda(w,c):(-c, w))
+        return all_words_freq
         
     def increment_feature(self, feature, category):
         self.feature_count.setdefault(feature,{})
@@ -106,17 +107,17 @@ class NaiveBayesClassifier(object):
         self.increment_cat(category)
 
 if __name__ == '__main__':
-	labels = ['arts', 'sports']
-	data = {}
-	for label in labels:
-	    f = open(label, 'r')
-	    data[label] = f.readlines()
+    labels = ['arts', 'sports'] # these are the categories we want
+    data = {}
+    for label in labels:
+        f = open(label, 'r')
+        data[label] = f.readlines()
         # print len(data[label])
-	    f.close()
-	    
-        nb = NaiveBayesClassifier()
-        nb.train_from_data(data)
-        print nb.probability("It was Don Mattingly’s opening news conference at his first spring training as the Dodgers’ manager, and a seat at the head of a picnic table was reserved for him. Mattingly demurred and folded his 6-foot frame into another chair on an outdoor patio after casually brushing off a dried bird dropping stuck to it.", 'arts')
-        print nb.probability("It was Don Mattingly’s opening news conference at his first spring training as the Dodgers’ manager, and a seat at the head of a picnic table was reserved for him. Mattingly demurred and folded his 6-foot frame into another chair on an outdoor patio after casually brushing off a dried bird dropping stuck to it.", 'sports')
+        f.close()
+
+    nb = NaiveBayesClassifier()
+    nb.train_from_data(data)
+    print nb.probability("Early Friday afternoon, the lead negotiators for the N.B.A. and the players union will hold a bargaining session in Beverly Hills — the latest attempt to break a 12-month stalemate on a new labor deal.", 'arts')
+    print nb.probability("Early Friday afternoon, the lead negotiators for the N.B.A. and the players union will hold a bargaining session in Beverly Hills — the latest attempt to break a 12-month stalemate on a new labor deal.", 'sports')
 
 

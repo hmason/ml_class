@@ -36,11 +36,11 @@ class TagClustering(object):
                     v.append(0)
             numerical_data.append(tuple(v))
         data = numpy.array(numerical_data)
-
+        
         # cluster the items
-        labels, error, nfound = kcluster(data, nclusters=20, dist='e') # 20 clusters, euclidean distance
+        # labels, error, nfound = kcluster(data, nclusters=20, dist='e') # 20 clusters, euclidean distance
         # labels, error, nfound = kcluster(data, nclusters=20, dist='b',npass=10) # 20 clusters, city-block distance, iterate 10 times
-        # labels, error, nfound = kcluster(data, nclusters=30, dist='a',npass=10) # 30 clusters, abs val of the correlation distance, iterate 10 times
+        labels, error, nfound = kcluster(data, nclusters=30, dist='a',npass=10) # 30 clusters, abs val of the correlation distance, iterate 10 times
         
         # print out the clusters
         clustered_urls = {}
@@ -51,9 +51,9 @@ class TagClustering(object):
             clustered_tags.setdefault(labels[i], []).extend(tag_data[url])
             i += 1
             
-        # for cluster_id,urls in clustered_urls.items():
-        #     print cluster_id
-        #     print urls
+        for cluster_id,urls in clustered_urls.items():
+            print cluster_id
+            print urls
         
         # for cluster_id,tags in clustered_tags.items():
         #     print cluster_id

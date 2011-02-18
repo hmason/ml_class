@@ -10,16 +10,17 @@ Copyright (c) 2011 Hilary Mason. All rights reserved.
 import sys, os
 
 import numpy
-from Pycluster import *
+from hcluster import *
 
 class TagClustering(object):
 
-	def __init__(self):
-		data = numpy.array([(1,1,0),(1,0,0),(0,0,0)]) # tags by row
-		
-		labels, error, nfound = kcluster(data, 2)
-		
-		print labels
+    def __init__(self):
+        v1 = [0,0,0,1]
+        v2 = [0,1,1,1]
+
+        print euclidean(v1, v2)
+        print cityblock(v1, v2)
+        print jaccard(v1, v2)
         
 
 if __name__ == '__main__':

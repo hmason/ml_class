@@ -15,7 +15,7 @@ def main(api_key, category, label):
     
     content = []
     for i in range(0,5):
-        print "http://api.nytimes.com/svc/search/v1/article?query=classifiers_facet:%s&api-key=%s&offset=%s" % (category, api_key, i)
+        # print "http://api.nytimes.com/svc/search/v1/article?query=classifiers_facet:%s&api-key=%s&offset=%s" % (category, api_key, i)
         h = urllib.urlopen("http://api.nytimes.com/svc/search/v1/article?query=classifiers_facet:%s&api-key=%s&offset=%s" % (category, api_key, i))
         data = json.loads(h.read())
         for result in data['results']:
@@ -32,4 +32,4 @@ def main(api_key, category, label):
 
 if __name__ == '__main__':
     main("f7b4a1749764aec0364b215c354e3a0f:18:25759498", "[Top/Features/Arts]","arts")
-    main("f7b4a1749764aec0364b215c354e3a0f:18:25759498", "[Top/News/Sports]","sports")
+    main("f7b4a1749764aec0364b215c354e3a0f:18:25759498", "[Top/News/Sports]","sports")  
