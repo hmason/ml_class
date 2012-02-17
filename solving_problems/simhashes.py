@@ -2,6 +2,7 @@ from hashes.simhash import simhash
 
 if __name__ == '__main__':
     f = open('flat.txt', 'r')
+    #f = open('thingiverse_all_names.csv')
     data = [line.strip() for line in f.readlines()]
     f.close()
 
@@ -12,4 +13,3 @@ if __name__ == '__main__':
         print "%s %s" % (k, h)
         print all_hashes['Flatpack Bunny'].similarity(h)
 
-    
