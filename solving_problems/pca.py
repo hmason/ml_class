@@ -25,4 +25,4 @@ X_r = pca.fit(X).transform(X)
 # print X_r.tolist()
 
 # Percentage of variance explained for each components
-print 'explained variance ratio (first two components): %s' % pca.explained_variance_ratio_
+# print 'explained variance ratio (first two components): %s' % pca.explained_variance_ratio_
