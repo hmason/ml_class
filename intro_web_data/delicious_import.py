@@ -38,7 +38,6 @@ class delicious_import(object):
             
         writer = csv.writer(open("links.csv", 'wb'))
         for entry in data:
-            print entry
             writer.writerow(entry)
         
 
