@@ -34,7 +34,7 @@ class delicious_import(object):
             tags = ",".join([t for t in post.getAttribute('tag').split()])
             timestamp = post.getAttribute('time')
             
-            data.append([url, tags])
+            data.append([url.encode("utf-8"), tags.encode("utf-8")])
             
         writer = csv.writer(open("links.csv", 'wb'))
         for entry in data:
