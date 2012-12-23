@@ -7,11 +7,10 @@ Created by Hilary Mason on 2010-11-28.
 Copyright (c) 2010 Hilary Mason. All rights reserved.
 """
 
-import sys, os
+import sys
 import urllib
 import csv
 from xml.dom import minidom
-from optparse import OptionParser
 
 
 class delicious_import(object):
