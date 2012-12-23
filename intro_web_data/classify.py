@@ -7,7 +7,6 @@ Created by Hilary Mason on 2011-02-17.
 Copyright (c) 2011 Hilary Mason. All rights reserved.
 """
 
-import sys, os
 import re, string
 
 from nltk import FreqDist

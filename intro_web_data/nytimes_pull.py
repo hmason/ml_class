@@ -7,8 +7,7 @@ Created by Hilary Mason on 2011-02-17.
 Copyright (c) 2011 Hilary Mason. All rights reserved.
 """
 
-import sys, os
-import urllib, urllib2
+import urllib
 import json
 
 def main(api_key, category, label):

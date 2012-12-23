@@ -7,9 +7,7 @@ Created by Hilary Mason on 2011-02-18.
 Copyright (c) 2011 Hilary Mason. All rights reserved.
 """
 
-import sys, os
 
-import numpy
 from hcluster import *
 
 class TagClustering(object):
