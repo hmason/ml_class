@@ -22,10 +22,7 @@ def main(api_key, category, label):
             
     f = open(label, 'w')
     for line in content:
-        try:
-            f.write('%s\n' % line)
-        except UnicodeEncodeError:
-            pass
+        f.write('%s\n' % line.encode('utf-8'))
             
     f.close()
 
